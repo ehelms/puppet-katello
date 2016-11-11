@@ -123,7 +123,6 @@ class katello (
     manage_httpd           => false,
     manage_plugins_httpd   => true,
     manage_squid           => true,
-    enable_crane           => true,
     enable_rpm             => true,
     enable_puppet          => true,
     enable_docker          => true,
@@ -142,7 +141,7 @@ class katello (
   class { '::katello::qpid':
     client_cert => $certs::qpid::client_cert,
     client_key  => $certs::qpid::client_key,
-  } ~>
+  } ->
   Exec['foreman-rake-db:seed']
 
   class { '::certs::foreman': }
