@@ -146,7 +146,5 @@ class katello (
 
   class { '::certs::foreman': }
 
-  Service['httpd'] -> Exec['foreman-rake-db:seed']
-
   User<|title == apache|>{groups +> $user_groups}
 }
