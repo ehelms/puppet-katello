@@ -25,6 +25,7 @@ class katello::qpid (
     interface              => $interface,
     wcache_page_size       => $wcache_page_size,
     subscribe              => Class['certs', 'certs::qpid'],
+    auth                   => true,
   }
 
   contain qpid
