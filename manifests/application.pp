@@ -32,7 +32,7 @@ class katello::application (
 
   include foreman::plugin::tasks
 
-  Class['certs', 'certs::ca', 'certs::apache'] ~> Class['apache::service']
+  #Class['certs', 'certs::ca', 'certs::apache'] ~> Class['apache::service']
 
   # Used in katello.yaml.erb
   $agent_broker_url = $katello::params::qpid_url
