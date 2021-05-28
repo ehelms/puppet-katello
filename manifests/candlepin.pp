@@ -33,6 +33,7 @@ class katello::candlepin (
   class { 'certs::candlepin':
     hostname             => $katello::params::candlepin_host,
     client_keypair_group => $katello::params::candlepin_client_keypair_group,
+    deploy               => false,
   }
 
   class { 'candlepin':
@@ -41,13 +42,13 @@ class katello::candlepin (
     user_groups                  => $certs::candlepin::group,
     oauth_key                    => $katello::params::candlepin_oauth_key,
     oauth_secret                 => $katello::params::candlepin_oauth_secret,
-    ca_key                       => $certs::candlepin::ca_key,
-    ca_cert                      => $certs::candlepin::ca_cert,
-    keystore_file                => $certs::candlepin::keystore,
-    keystore_password            => $certs::candlepin::keystore_password,
-    truststore_file              => $certs::candlepin::truststore,
-    truststore_password          => $certs::candlepin::truststore_password,
+    ca_cert                      => '/etc/pki/katello-certs-tools/certs/katello-default-ca.crt',
+    ca_key                       => '/etc/pki/katello-certs-tools/private/katello-default-ca.key',
+    tomcat_ssl_cert              => '/etc/pki/katello-certs-tools/certs/localhost-tomcat.crt',
+    tomcat_ssl_key               => '/etc/pki/katello-certs-tools/private/localhost-tomcat.key',
     artemis_client_dn            => $certs::candlepin::artemis_client_dn,
+    artemis_client_certificate   => '/etc/candlepin/certs/artemis-client.crt',
+    artemis_client_ca_chain      => '/etc/candlepin/certs/candlepin-ca.crt',
     java_home                    => '/usr/lib/jvm/jre-11',
     java_package                 => 'java-11-openjdk',
     enable_basic_auth            => false,
