@@ -59,7 +59,7 @@ class katello (
 ) {
 
   package { 'katello':
-    ensure => installed,
+    ensure  => installed,
   }
 
   class { 'katello::params':
