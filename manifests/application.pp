@@ -53,4 +53,6 @@ class katello::application (
       queues    => ['hosts_queue'],
     }
   }
+
+  include advisor
 }
